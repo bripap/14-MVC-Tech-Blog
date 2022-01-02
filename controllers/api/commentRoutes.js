@@ -29,7 +29,6 @@ router.get('/:id', async (req, res) => {
         .json({ message: `There is no comment with id = ${req.params.id}` });
       return;
     }
-    // res.status(200).json(commentData.reverse());
     res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
@@ -39,7 +38,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
-      ...req.body, // which is really just comment_text and post_id - but a spreader is fancy
+      ...req.body, 
       user_id: req.session.user_id,
     });
 
